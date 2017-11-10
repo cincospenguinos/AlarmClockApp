@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: alarms
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  enabled    :boolean
+#  time       :time
+#  days       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Wake Up
+  enabled: true
+  time: 2017-11-10 13:13:24
+  days:
+    - :sunday
+    - :monday
+    - :tuesday
+
+two:
+  name: Other Alarm
+  enabled: false
+  time: 2017-11-10 13:13:24
+  days:
+    - sunday
+    - :monday
+    - :tuesday
