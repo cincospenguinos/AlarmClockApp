@@ -29,6 +29,11 @@ class Alarm < ApplicationRecord
     days.include?(WEEKDAYS[now.wday]) && now.localtime.min == time.localtime.min && now.localtime.hour == time.localtime.hour && enabled
   end
 
+  def has_day?(day)
+    return false unless day.is_a?(Symbol) && WEEKDAYS.values.include?(day)
+    days.include?(day)
+  end
+
   ## Add a day to the collection
   def add_day(day)
     errors.add(:days, "#{day} must be a weekday symbol!") unless day.is_a?(Symbol) && WEEKDAYS.values.include?(day)
@@ -39,6 +44,11 @@ class Alarm < ApplicationRecord
   def remove_day(day)
     errors.add(:days, "#{day} must be a weekday symbol!") unless day.is_a?(Symbol) && WEEKDAYS.values.include?(day)
     days.delete(day)
+  end
+
+  ## Returns array of weekdays
+  def self.weekdays
+    WEEKDAYS.values
   end
 
   private

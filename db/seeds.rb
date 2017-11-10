@@ -5,3 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Alarm.create!(name: 'Some alarm', time: Time.now, enabled: true, days: %i(sunday monday tuesday) )
