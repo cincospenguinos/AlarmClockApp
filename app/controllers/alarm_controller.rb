@@ -14,7 +14,8 @@ class AlarmController < ApplicationController
   end
 
   def create
-    @alarm = Alarm.create(alarm_params)
+    # @alarm = Alarm.create(alarm_params)
+    puts params.inspect
   end
 
   private
@@ -24,7 +25,7 @@ class AlarmController < ApplicationController
   end
 
   def alarm_params
-    params.require(:alarm).permit(:name, :time, :days)
+    # params.require(:alarm).permit(:name, :time, :days)
   end
 
 end

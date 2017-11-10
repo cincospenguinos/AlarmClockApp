@@ -35,7 +35,7 @@
                 <% active = alarm.has_day?(weekday) %>
                 <label class="btn btn-xs btn-default <%= 'active' if active %>">
                   <%= weekday.capitalize %>
-                  <input type="checkbox" autocomplete="off"<%= 'checked' if active %> />
+                  <input type="checkbox" autocomplete="off" <%= 'checked' if active %> />
                 </label>
               <% end %>
               </div>
@@ -54,3 +54,9 @@
 </div>
 
 <!-- TODO: form_for alarm -->
+<div class="container">
+  <h3>Add Alarm</h3>
+  <div class="row">
+    <%= render 'alarm/form' %>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<%= form_for :alarm, :html => {:class => 'form-horizontal center'}, remote: true do |f| %>
+    <div class="form-group">
+      <%= f.label :name, 'Name', class: 'col-md-4 control-label' %>
+      <div class="col-md-8">
+        <%= f.text_field(:name) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :time, 'Time', class: 'col-md-4 control-label' %>
+      <div class="col-md-8">
+        <%= f.time_select(:time) %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :days, 'Days', class: 'col-md-4 control-label' %>
+      <div class="col-md-8">
+        <div class="btn-group" data-toggle="buttons">
+          <% Alarm.weekdays.each do |weekday| %>
+              <label class="btn btn-xs btn-default">
+                <%= weekday.capitalize %>
+                <input type="checkbox" name="days[]" value="<%= weekday.capitalize%>"/>
+              </label>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit 'Submit', class: 'btn btn-default'%>
+<% end %>
