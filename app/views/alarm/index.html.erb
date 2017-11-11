@@ -16,7 +16,6 @@
       <table class="table table-striped">
         <thead>
         <tr>
-          <th>ID</th>
           <th>Alarm Name</th>
           <th>Time</th>
           <th>Days</th>
@@ -26,26 +25,27 @@
         </thead>
         <tbody id="alarm_table">
           <% @alarms.each do |alarm| %>
-            <td><%= alarm.id %></td>
-            <td><%= alarm.name %></td>
-            <td><%= "#{alarm.time.localtime.hour}:#{alarm.time.localtime.min}"%></td>
-            <td>
-              <div class="btn-group" data-toggle="buttons" id="<%= alarm.id %>">
-              <% Alarm.weekdays.each do |weekday| %>
-                <% active = alarm.has_day?(weekday) %>
-                <label class="btn btn-xs btn-default <%= 'active' if active %>">
-                  <%= weekday.capitalize %>
-                  <input type="checkbox" autocomplete="off" <%= 'checked' if active %> />
-                </label>
-              <% end %>
-              </div>
-            </td>
-            <td>
-              <button class="btn btn-xs <%= alarm.enabled ? 'btn-success' : 'btn-default'%>"><%= alarm.enabled ? 'ON' : 'OFF'%></button>
-            </td>
-            <td>
-              <button class="btn btn-xs btn-danger">DELETE</button>
-            </td>
+            <tr id="alarm_<%= alarm.id%>">
+              <td><%= alarm.name %></td>
+              <td><%= "#{alarm.time.localtime.hour}:#{alarm.time.localtime.min}"%></td>
+              <td>
+                <div class="btn-group" data-toggle="buttons" id="<%= alarm.id %>">
+                  <% Alarm.weekdays.each do |weekday| %>
+                      <% active = alarm.has_day?(weekday) %>
+                      <label class="btn btn-xs btn-default <%= 'active' if active %>">
+                        <%= weekday.capitalize %>
+                        <input type="checkbox" autocomplete="off" <%= 'checked' if active %> />
+                      </label>
+                  <% end %>
+                </div>
+              </td>
+              <td>
+                <button class="btn btn-xs <%= alarm.enabled ? 'btn-success' : 'btn-default'%>"><%= alarm.enabled ? 'ON' : 'OFF'%></button>
+              </td>
+              <td>
+                <button class="btn btn-xs btn-danger">DELETE</button>
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
