@@ -1,13 +1,9 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-
-# TODO: this
-
+UnobtrusiveFlash.flashOptions['timeout'] = 2000;
 
 setup = () ->
-  `$('#new_alarm_form').on('ajax:success', function(event, data, status, xhr) {
-      UnobtrusiveFlash.showFlashFromCookies()
-  });`
+  console.log('Setup AJAX here!')
 
 $(document).ready(setup);

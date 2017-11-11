@@ -54,7 +54,7 @@ class Alarm < ApplicationRecord
   private
 
   def set_default_values
-    self.enabled ||= false
+    self.enabled ||= true
     self.days ||= []
   end
 

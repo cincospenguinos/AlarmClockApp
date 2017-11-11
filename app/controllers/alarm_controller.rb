@@ -18,12 +18,11 @@ class AlarmController < ApplicationController
     days = get_days(params['days'])
     time = get_time(params['alarm'].select { |k, v| k.include?('time') } )
 
-    alarm = Alarm.create!(name: params['alarm']['name'], time: time, days: days)
-    flash[:notice] = 'success!'
+    @alarm = Alarm.create!(name: params['alarm']['name'], time: time, days: days)
+    flash[:notice] = 'Success!'
 
-    respond_to do |f|
-      # f.html { redirect_to alarm_url }
-      f.json { render json: { alarm: alarm } }
+    respond_to do |format|
+      format.js { render 'alarm/create' }
     end
   end
 
