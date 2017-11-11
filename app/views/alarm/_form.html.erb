@@ -2,7 +2,7 @@
     <div class="form-group">
       <%= f.label :name, 'Name', class: 'col-md-4 control-label' %>
       <div class="col-md-8">
-        <%= f.text_field(:name, class: 'new_alarm') %>
+        <%= f.text_field(:name, class: 'new_alarm', id: 'new_alarm_name') %>
       </div>
     </div>
     <div class="form-group">
@@ -14,11 +14,11 @@
     <div class="form-group">
       <%= f.label :days, 'Days', class: 'col-md-4 control-label' %>
       <div class="col-md-8">
-        <div class="btn-group" data-toggle="buttons">
+        <div class="btn-group" data-toggle="buttons" id="new_alarm_days">
           <% Alarm.weekdays.each do |weekday| %>
-              <label class="btn btn-xs btn-default">
+              <label class="btn btn-xs btn-default new_alarm_day_checkbox">
                 <%= weekday.capitalize %>
-                <input type="checkbox" class="new_alarm" name="days[]" value="<%= weekday.capitalize%>" />
+                <input type="checkbox" class="" name="days[]" value="<%= weekday.capitalize%>" />
               </label>
           <% end %>
         </div>

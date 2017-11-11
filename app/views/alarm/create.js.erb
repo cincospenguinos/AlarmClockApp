@@ -1,23 +1,33 @@
-var newAlarm = "<tr id=\"alarm_<%= @alarm.id%>\">\n" +
-    "              <td><%= @alarm.name %></td>\n" +
-    "              <td><%= "#{@alarm.time.localtime.hour}:#{@alarm.time.localtime.min}" %></td>\n" +
-    "              <td>\n" +
-    "                <div class=\"btn-group\" data-toggle=\"buttons\" id=\"<%= @alarm.id %>\">\n" +
-    "                  <% Alarm.weekdays.each do |weekday| %>\n" +
-    "                      <% active = @alarm.has_day?(weekday) %>\n" +
-    "                      <label class=\"btn btn-xs btn-default <%= 'active' if active %>\">\n" +
-    "                        <%= weekday.capitalize %>\n" +
-    "                        <input type=\"checkbox\" autocomplete=\"off\" <%= 'checked' if active %> />\n" +
-    "                      </label>\n" +
-    "                  <% end %>\n" +
-    "                </div>\n" +
-    "              </td>\n" +
-    "              <td>\n" +
-    "                <button class=\"btn btn-xs <%= @alarm.enabled ? 'btn-success' : 'btn-default'%>\"><%= @alarm.enabled ? 'ON' : 'OFF'%></button>\n" +
-    "              </td>\n" +
-    "              <td>\n" +
-    "                <button class=\"btn btn-xs btn-danger\">DELETE</button>\n" +
-    "              </td>\n" +
-    "            </tr>";
-$('#alarm_table').append($(newAlarm));
+<% if @alarm.valid? %>
+  var newAlarm = "<tr id=\"alarm_<%= @alarm.id%>\">\n" +
+      "              <td><%= @alarm.name %></td>\n" +
+      "              <td><%= "#{@alarm.time.localtime.hour}:#{@alarm.time.localtime.min}" %></td>\n" +
+      "              <td>\n" +
+      "                <div class=\"btn-group\" data-toggle=\"buttons\" id=\"<%= @alarm.id %>\">\n" +
+      "                  <% Alarm.weekdays.each do |weekday| %>\n" +
+      "                      <% active = @alarm.has_day?(weekday) %>\n" +
+      "                      <label class=\"btn btn-xs btn-default <%= 'active' if active %>\">\n" +
+      "                        <%= weekday.capitalize %>\n" +
+      "                        <input type=\"checkbox\" autocomplete=\"off\" <%= 'checked' if active %> />\n" +
+      "                      </label>\n" +
+      "                  <% end %>\n" +
+      "                </div>\n" +
+      "              </td>\n" +
+      "              <td>\n" +
+      "                <button class=\"btn btn-xs <%= @alarm.enabled ? 'btn-success' : 'btn-default'%>\"><%= @alarm.enabled ? 'ON' : 'OFF'%></button>\n" +
+      "              </td>\n" +
+      "              <td>\n" +
+      "                <button class=\"btn btn-xs btn-danger\">DELETE</button>\n" +
+      "              </td>\n" +
+      "            </tr>";
+  $('#alarm_table').append($(newAlarm));
+  $('#new_alarm_name').val('');
+  $('.new_alarm_day_checkbox').each(function(){
+      $(this).removeClass('active');
+  });
+<% else %>
+  // TODO: Some form handling or something
+<% end %>
+
+
 UnobtrusiveFlash.showFlashFromCookies();

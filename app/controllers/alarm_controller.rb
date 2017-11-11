@@ -19,7 +19,7 @@ class AlarmController < ApplicationController
     time = get_time(params['alarm'].select { |k, v| k.include?('time') } )
 
     @alarm = Alarm.create!(name: params['alarm']['name'], time: time, days: days)
-    flash[:notice] = 'Success!'
+    @alarm.valid? ? flash[:notice] = 'Alarm added.' : flash[:error] = 'Alarm not valid'
 
     respond_to do |format|
       format.js { render 'alarm/create' }
