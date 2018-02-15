@@ -26,6 +26,15 @@ class AlarmController < ApplicationController
     end
   end
 
+  def delete
+    id = params['alarm_id']
+    Alarm.delete(id)
+
+    respond_to do |format|
+      format.js { render 'alarm/delete' }
+    end
+  end
+
   private
 
   def all_alarms
